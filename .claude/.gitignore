@@ -1,0 +1,12 @@
+# Whitelist approach: ~/.claude mixes durable config with live runtime
+# state (credentials, session history, caches, daemon sockets...). Default
+# to ignoring everything so anything new Claude Code drops in here doesn't
+# get committed by accident, and explicitly allow the few files that are
+# actually portable config.
+*
+
+!.gitignore
+!README.md
+!settings.json
+!statusline-command.sh
+!*.example

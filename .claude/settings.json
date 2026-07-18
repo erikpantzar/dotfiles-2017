@@ -1,0 +1,32 @@
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '\"\\(.message // \"Claude needs attention\") (\\(.cwd // \"unknown dir\"))\"' | { read -r msg; ~/.local/bin/claude-notify \"🔔 $msg\"; } 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '\"Claude finished responding in \\(.cwd // \"unknown dir\")\"' | { read -r msg; ~/.local/bin/claude-notify \"✅ $msg\"; } 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  },
+  "tui": "fullscreen",
+  "theme": "dark",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  }
+}
